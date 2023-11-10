@@ -9,6 +9,7 @@ namespace Dapper_DB.Models.Doman
 {
     public class Person
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }

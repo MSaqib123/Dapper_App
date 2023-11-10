@@ -17,6 +17,19 @@ namespace Dapper_DB.Repository
             _db = db;
         }
 
+        public async Task<IEnumerable<Person>> GetListAsync()
+        {
+            IEnumerable<Person> result = await _db.GetData<Person, dynamic>("spGetAllPersons", new { });
+            return result;
+        }
+
+        public async Task<Person> GetByIdAsync(int id)
+        {
+            IEnumerable<Person> result = await _db.GetData<Person, dynamic>("spGetPersonById", new { Id = id });
+            return result.FirstOrDefault();
+        }
+
+
         public async Task<bool> AddAsync(Person obj)
         {
             try
@@ -56,16 +69,6 @@ namespace Dapper_DB.Repository
             }
         }
         
-        public async Task<Person> GetByIdAsync(int id)
-        {
-            IEnumerable<Person> result = await _db.GetData<Person,dynamic>("spGetPersonById", new { Id=id });
-            return result.FirstOrDefault();
-        }
-
-        public async Task<IEnumerable<Person>> GetListAsync()
-        {
-            IEnumerable<Person> result = await _db.GetData<Person,dynamic>("spGetAllPersons", new {});
-            return result;
-        }
+        
     }
 }
