@@ -1,5 +1,6 @@
 create database dapper_db
-
+use dapper_db
+select * from Person
 create table dbo.Person(
 	Id int	primary key identity,
 	Name nvarchar(100) not null,
@@ -44,7 +45,7 @@ BEGIN
     WHERE Id = @Id;
 END
 
-
+select * from Person
 CREATE PROCEDURE spDeletePerson
     @Id INT
 AS
